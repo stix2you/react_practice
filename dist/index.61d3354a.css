@@ -15,7 +15,7 @@
 .book-card {
   color: #444;
   cursor: pointer;
-  background: #fff9f9;
+  background: #fdf6ee;
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;
@@ -26,13 +26,13 @@
 }
 
 .book-card:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .book-detail {
   color: #444;
   cursor: pointer;
-  background: #fff9f9;
+  background: #fdf6ee;
   border-radius: 10px;
   flex-direction: column;
   align-items: center;

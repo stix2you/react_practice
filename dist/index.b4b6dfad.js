@@ -27184,9 +27184,10 @@ var _indexCss = require("../../index.css");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [books, setBooks] = (0, _react.useState)([]); // create a new piece of state called books, and a function called setBooks to update it
-    const [selectedBook, setSelectedBook] = (0, _react.useState)(null); // create a new piece of state called selectedBook, and a function called setSelectedBook to update it
+    const [books, setBooks] = (0, _react.useState)([]); // create a new piece of state called books, which is an empty array, and a function called setBooks to update it
+    const [selectedBook, setSelectedBook] = (0, _react.useState)(null); // create a new piece of state called selectedBook, which is null, and a function called setSelectedBook to update it
     (0, _react.useEffect)(()=>{
+        // useEffect is a hook that allows you to perform side effects in function components
         fetch("https://openlibrary.org/search.json?q=star+wars").then((response)=>response.json()).then((data)=>{
             console.log("books from api:", data);
             const booksFromApi = data.docs.map((doc)=>{
@@ -27205,7 +27206,7 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedBook(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 31,
+        lineNumber: 32,
         columnNumber: 13
     }, undefined) // onBackClick is a prop that's passed to the BookView component
     ;
@@ -27213,7 +27214,7 @@ const MainView = ()=>{
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 36,
+        lineNumber: 37,
         columnNumber: 16
     }, undefined); // returns a message that says "The list is empty!"
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27226,12 +27227,12 @@ const MainView = ()=>{
                 }
             }, book.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 42,
+                lineNumber: 43,
                 columnNumber: 17
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 40,
+        lineNumber: 41,
         columnNumber: 9
     }, undefined);
 };

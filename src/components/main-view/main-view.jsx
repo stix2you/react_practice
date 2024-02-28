@@ -6,10 +6,11 @@ import '../../index.css'
 
 
 export const MainView = () => {              // create a functional component called MainView
-    const [books, setBooks] = useState([]);     // create a new piece of state called books, and a function called setBooks to update it
-    const [selectedBook, setSelectedBook] = useState(null);   // create a new piece of state called selectedBook, and a function called setSelectedBook to update it
+    const [books, setBooks] = useState([]);     // create a new piece of state called books, which is an empty array, and a function called setBooks to update it
+    const [selectedBook, setSelectedBook] = useState(null);   // create a new piece of state called selectedBook, which is null, and a function called setSelectedBook to update it
 
-    useEffect(() => {
+    useEffect(() => {   // the purpose of this function is to fetch data from an API and update the books state with the data, 
+                        // useEffect is a hook that allows you to perform side effects in function components
         fetch("https://openlibrary.org/search.json?q=star+wars")
             .then((response) => response.json())
             .then((data) => {
