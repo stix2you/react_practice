@@ -1,0 +1,82 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+/* this is the container for the list itself */
+.book-list {     
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;   
+    align-items: center;   
+    margin-top: 20px;
+  }
+  
+    /* this is the container for each book in the list */
+  .book-card {
+    border-radius: 10px;
+    background: rgb(255, 249, 249);
+    font-size: 24px;
+    color: rgb(68, 68, 68);
+    margin: 10px;
+    padding: 30px;
+    transition: 1s ease;
+    cursor: pointer;
+    width: fit-content;
+  }
+  
+  /* this is the hover effect for each book in the list */
+  .book-card:hover {
+    transform: scale(1.1);
+  }
+  
+    /* this is the container for the book details */
+  .book-detail {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    background: rgb(255, 249, 249);
+    font-size: 24px;
+    color: rgb(68, 68, 68);
+    margin: 10px;
+    padding: 30px;
+    transition: 1s ease;
+    cursor: pointer;
+    width: fit-content;
+  }
+
+button {
+    border-radius: 10px;
+    background-color: rgb(102, 20, 20);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: rgb(165, 33, 33);
+  
+}
+
+  p {
+    font-weight: bold;
+  }
+  
+  img {
+    border-radius: 10px;
+    height: auto;
+    width: 300px;
+    filter: brightness(120%);
+    filter: contrast(120%);
+  }
