@@ -30,7 +30,7 @@ export const MainView = () => {              // create a functional component ca
     }, []);
 
     if (!user) {
-        return <LoginView />;
+        return <LoginView onLoggedIn={(user) => setUser(user)}/>;   // if user is falsy, return a new LoginView component as a prop to login-view component
     }
 
     if (selectedBook) {                             // if selectedBook is truthy, return a new BookView component
@@ -66,9 +66,9 @@ MainView.propTypes = {
 
     })),
 
-    selectedBook: PropTypes.shape({
+    selectedBook: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
 
-    }).isRequired
+    }))
 };

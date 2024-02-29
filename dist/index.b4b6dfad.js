@@ -27208,11 +27208,13 @@ const MainView = ()=>{
             setBooks(booksFromApi);
         });
     }, []);
-    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {}, void 0, false, {
+    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
+        onLoggedIn: (user)=>setUser(user)
+    }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
         lineNumber: 33,
         columnNumber: 16
-    }, undefined);
+    }, undefined); // if user is falsy, return a new LoginView component as a prop to login-view component
     if (selectedBook) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bookView.BookView), {
         book: selectedBook,
         onBackClick: ()=>setSelectedBook(null)
@@ -27262,10 +27264,10 @@ MainView.propTypes = {
         title: (0, _propTypes.PropTypes).string.isRequired,
         image: (0, _propTypes.PropTypes).string.isRequired
     })),
-    selectedBook: (0, _propTypes.PropTypes).shape({
+    selectedBook: (0, _propTypes.PropTypes).arrayOf((0, _propTypes.PropTypes).shape({
         title: (0, _propTypes.PropTypes).string.isRequired,
         image: (0, _propTypes.PropTypes).string.isRequired
-    }).isRequired
+    }))
 };
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -28387,39 +28389,65 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "LoginView", ()=>LoginView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-const LoginView = ()=>{
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _s = $RefreshSig$();
+const LoginView = ({ onLoggedIn })=>{
+    _s();
+    const [username, setUsername] = (0, _react.useState)(""); // create a new piece of state called username, which is an empty string, and a function called setUsername to update it
+    const [password, setPassword] = (0, _react.useState)(""); // create a new piece of state called password, which is an empty string, and a function called setPassword to update it
+    const handleSubmit = (event)=>{
+        event.preventDefault(); // prevent the default behavior of the form to reload page
+        console.log("Button clicked");
+        const data = {
+            access: username,
+            secret: password
+        };
+        fetch("https://openlibrary.org/account/login.json", {
+            method: "POST",
+            body: JSON.stringify(data) // convert the data to a JSON string
+        }).then((response)=>{
+            if (response.ok) onLoggedIn(username);
+            else alert("login failed");
+        });
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+        onSubmit: handleSubmit,
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 children: [
-                    "Username:",
+                    "Username: ",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "text"
+                        type: "text",
+                        value: username,
+                        onChange: (e)=>setUsername(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 6,
-                        columnNumber: 17
+                        lineNumber: 31,
+                        columnNumber: 30
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 4,
+                lineNumber: 31,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 children: [
-                    "Password:",
+                    "Password: ",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "password"
+                        type: "password",
+                        value: password,
+                        onChange: (e)=>setPassword(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 10,
-                        columnNumber: 17
+                        lineNumber: 32,
+                        columnNumber: 30
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 8,
+                lineNumber: 32,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -28427,16 +28455,17 @@ const LoginView = ()=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 12,
+                lineNumber: 33,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 3,
+        lineNumber: 30,
         columnNumber: 9
     }, undefined);
 };
+_s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
 _c = LoginView;
 var _c;
 $RefreshReg$(_c, "LoginView");
@@ -28446,6 +28475,6 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"irmnC":[function() {},{}],"irmnC":[function() {},{}]},["gjUm6","1xC6H","d8Dch"], "d8Dch", "parcelRequiree27a")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"irmnC":[function() {},{}],"irmnC":[function() {},{}]},["gjUm6","1xC6H","d8Dch"], "d8Dch", "parcelRequiree27a")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
