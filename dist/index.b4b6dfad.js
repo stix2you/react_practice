@@ -142,15 +142,16 @@
       this[globalName] = mainExports;
     }
   }
-})({"cGwEu":[function(require,module,exports) {
+})({"gjUm6":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
+var HMR_USE_SSE = false;
 module.bundle.HMR_BUNDLE_ID = "022c1b16b4b6dfad";
 "use strict";
-/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
+/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
   HMRMessage,
@@ -189,6 +190,7 @@ declare var HMR_HOST: string;
 declare var HMR_PORT: string;
 declare var HMR_ENV_HASH: string;
 declare var HMR_SECURE: boolean;
+declare var HMR_USE_SSE: boolean;
 declare var chrome: ExtensionContext;
 declare var browser: ExtensionContext;
 declare var __parcel__import__: (string) => Promise<void>;
@@ -232,7 +234,8 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
         "0.0.0.0"
     ].includes(hostname) ? "wss" : "ws";
     var ws;
-    try {
+    if (HMR_USE_SSE) ws = new EventSource("/__parcel_hmr");
+    else try {
         ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
     } catch (err) {
         if (err.message) console.error(err.message);
@@ -302,12 +305,14 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
             }
         }
     };
-    ws.onerror = function(e) {
-        if (e.message) console.error(e.message);
-    };
-    ws.onclose = function() {
-        console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
-    };
+    if (ws instanceof WebSocket) {
+        ws.onerror = function(e) {
+            if (e.message) console.error(e.message);
+        };
+        ws.onclose = function() {
+            console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
+        };
+    }
 }
 function removeErrorOverlay() {
     var overlay = document.getElementById(OVERLAY_ID);
@@ -578,9 +583,9 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     });
 }
 
-},{}],"3G56m":[function(require,module,exports) {
-var Refresh = require("479f6e717adfbeef");
-var ErrorOverlay = require("3a5647ebfb8ba8b9");
+},{}],"1xC6H":[function(require,module,exports) {
+var Refresh = require("6d18d6bd340e7473");
+var ErrorOverlay = require("74ad5ea14201648c");
 Refresh.injectIntoGlobalHook(window);
 window.$RefreshReg$ = function() {};
 window.$RefreshSig$ = function() {
@@ -599,11 +604,11 @@ window.addEventListener("parcelhmraccept", ()=>{
     ErrorOverlay.dismissRuntimeErrors();
 });
 
-},{"479f6e717adfbeef":"12gP3","3a5647ebfb8ba8b9":"jEC7b"}],"12gP3":[function(require,module,exports) {
+},{"6d18d6bd340e7473":"786KC","74ad5ea14201648c":"7i2ML"}],"786KC":[function(require,module,exports) {
 "use strict";
-module.exports = require("2d4231efd697a810");
+module.exports = require("96622d495519d4e");
 
-},{"2d4231efd697a810":"iVeay"}],"iVeay":[function(require,module,exports) {
+},{"96622d495519d4e":"hdge7"}],"hdge7":[function(require,module,exports) {
 /** @license React v0.9.0
  * react-refresh-runtime.development.js
  *
@@ -1063,8 +1068,8 @@ module.exports = require("2d4231efd697a810");
     exports.setSignature = setSignature;
 })();
 
-},{}],"jEC7b":[function(require,module,exports) {
-var process = require("fbabed07af8db48f");
+},{}],"7i2ML":[function(require,module,exports) {
+var process = require("e985fd95d100752a");
 !function(e, t) {
     module.exports = t();
 }(window, function() {
@@ -2794,7 +2799,7 @@ var process = require("fbabed07af8db48f");
     ]);
 });
 
-},{"fbabed07af8db48f":"82dki"}],"82dki":[function(require,module,exports) {
+},{"e985fd95d100752a":"d5jf4"}],"d5jf4":[function(require,module,exports) {
 // shim for using process in browser
 var process = module.exports = {};
 // cached from whatever global is present so that test runners that stub it
@@ -2978,7 +2983,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/main-view/main-view":"4gflv","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"cpOWO","./index.css":"irmnC"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/main-view/main-view":"4gflv","./index.css":"irmnC","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("ee51401569654d91");
 
@@ -27178,7 +27183,8 @@ parcelHelpers.export(exports, "MainView", ()=>MainView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react"); // import the useState and useEffect hooks from the react package
 var _bookCard = require("../book-card/book-card"); // import the BookCard component from the book-card module
-var _bookView = require("../book-view/book-view"); // import the BookView component from the book-view module  
+var _bookView = require("../book-view/book-view"); // import the BookView component from the book-view module 
+var _loginView = require("../login-view/login-view"); // import the LoginView component from the login-view module
 var _propTypes = require("prop-types"); // import the PropTypes library from the prop-types package
 var _indexCss = require("../../index.css");
 var _s = $RefreshSig$();
@@ -27186,6 +27192,7 @@ const MainView = ()=>{
     _s();
     const [books, setBooks] = (0, _react.useState)([]); // create a new piece of state called books, which is an empty array, and a function called setBooks to update it
     const [selectedBook, setSelectedBook] = (0, _react.useState)(null); // create a new piece of state called selectedBook, which is null, and a function called setSelectedBook to update it
+    const [user, setUser] = (0, _react.useState)(null); // create a new piece of state called user, which is null, and a function called setUser to update it
     (0, _react.useEffect)(()=>{
         // useEffect is a hook that allows you to perform side effects in function components
         fetch("https://openlibrary.org/search.json?q=star+wars").then((response)=>response.json()).then((data)=>{
@@ -27201,20 +27208,31 @@ const MainView = ()=>{
             setBooks(booksFromApi);
         });
     }, []);
+    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {}, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 33,
+        columnNumber: 16
+    }, undefined);
     if (selectedBook) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bookView.BookView), {
         book: selectedBook,
         onBackClick: ()=>setSelectedBook(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 32,
+        lineNumber: 38,
         columnNumber: 13
     }, undefined) // onBackClick is a prop that's passed to the BookView component
     ;
     if (books.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: "The list is empty!"
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+            children: "The list is empty -- Attempting to load API ..."
+        }, void 0, false, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 43,
+            columnNumber: 21
+        }, undefined)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 37,
+        lineNumber: 43,
         columnNumber: 16
     }, undefined); // returns a message that says "The list is empty!"
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27227,16 +27245,16 @@ const MainView = ()=>{
                 }
             }, book.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 43,
+                lineNumber: 49,
                 columnNumber: 17
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 41,
+        lineNumber: 47,
         columnNumber: 9
     }, undefined);
 };
-_s(MainView, "2SVsZCLjlUob5ogwO0ME3Chu7cs=");
+_s(MainView, "z8Hr9RFdM2NPhcMOBs/FokIs+b8=");
 _c = MainView;
 // Here is where we define all the props constraints for the MainView
 MainView.propTypes = {
@@ -27257,7 +27275,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../book-card/book-card":"8FC36","../book-view/book-view":"6u6eS","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"2BZ6I","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"cpOWO","../../index.css":"irmnC"}],"8FC36":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../book-card/book-card":"8FC36","../book-view/book-view":"6u6eS","../login-view/login-view":"9YtA0","prop-types":"7wKI2","../../index.css":"irmnC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"8FC36":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1994 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27303,7 +27321,7 @@ $RefreshReg$(_c, "BookCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"2BZ6I","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"cpOWO"}],"7wKI2":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7wKI2":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -28050,7 +28068,7 @@ printWarning = function(text) {
 };
 module.exports = checkPropTypes;
 
-},{"24ba1e58d167a82c":"jZTZJ","898bc82f39d83f7c":"fqKuf"}],"2BZ6I":[function(require,module,exports) {
+},{"24ba1e58d167a82c":"jZTZJ","898bc82f39d83f7c":"fqKuf"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -28080,9 +28098,9 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"cpOWO":[function(require,module,exports) {
+},{}],"km3Ru":[function(require,module,exports) {
 "use strict";
-var Refresh = require("59c461bc82c5bed5");
+var Refresh = require("7422ead32dcc1e6b");
 function debounce(func, delay) {
     {
         let timeout = undefined;
@@ -28218,7 +28236,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"59c461bc82c5bed5":"12gP3"}],"6u6eS":[function(require,module,exports) {
+},{"7422ead32dcc1e6b":"786KC"}],"6u6eS":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1e99 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -28358,6 +28376,76 @@ $RefreshReg$(_c, "BookView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"2BZ6I","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"cpOWO","react":"21dqq"}],"irmnC":[function() {},{}],"irmnC":[function() {},{}]},["cGwEu","3G56m","d8Dch"], "d8Dch", "parcelRequiree27a")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9YtA0":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9fee.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LoginView", ()=>LoginView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+const LoginView = ()=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Username:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "text"
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 6,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 4,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Password:",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "password"
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 10,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 8,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                type: "submit",
+                children: "Submit"
+            }, void 0, false, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 12,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/login-view/login-view.jsx",
+        lineNumber: 3,
+        columnNumber: 9
+    }, undefined);
+};
+_c = LoginView;
+var _c;
+$RefreshReg$(_c, "LoginView");
+
+  $parcel$ReactRefreshHelpers$9fee.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"irmnC":[function() {},{}],"irmnC":[function() {},{}]},["gjUm6","1xC6H","d8Dch"], "d8Dch", "parcelRequiree27a")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
