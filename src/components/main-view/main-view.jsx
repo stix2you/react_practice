@@ -45,6 +45,7 @@ export const MainView = () => {              // create a functional component ca
 
     return (                         // returns a new piece of UI
         <div className="book-list">
+            <button onClick={() => { setUser(null); }}>Logout</button>
             {books.map((book) => (   // maps each element in the array to a new piece of UI, after execution will have <div>{book.title}</div> for each book in the array
                 <BookCard            // returns a new BookCard component for each book in the array
                     key={book.id}    // key is a special attribute that's used by React to keep track of the elements in the array -- it should be unique for each element
@@ -54,6 +55,7 @@ export const MainView = () => {              // create a functional component ca
                     }} />
             ))}
         </div>
+        
     );
 
 };

@@ -27239,18 +27239,30 @@ const MainView = ()=>{
     }, undefined); // returns a message that says "The list is empty!"
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "book-list",
-        children: books.map((book)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bookCard.BookCard // returns a new BookCard component for each book in the array
-            ), {
-                book: book,
-                onBookClick: (newSelectedBook)=>{
-                    setSelectedBook(newSelectedBook); // when the BookCard component calls onBookClick, it will call setSelectedBook with the newSelectedBook as an argument (newSelectedBook is the book that was clicked on
-                }
-            }, book.id, false, {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: ()=>{
+                    setUser(null);
+                },
+                children: "Logout"
+            }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 49,
-                columnNumber: 17
-            }, undefined))
-    }, void 0, false, {
+                lineNumber: 48,
+                columnNumber: 13
+            }, undefined),
+            books.map((book)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bookCard.BookCard // returns a new BookCard component for each book in the array
+                ), {
+                    book: book,
+                    onBookClick: (newSelectedBook)=>{
+                        setSelectedBook(newSelectedBook); // when the BookCard component calls onBookClick, it will call setSelectedBook with the newSelectedBook as an argument (newSelectedBook is the book that was clicked on
+                    }
+                }, book.id, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 50,
+                    columnNumber: 17
+                }, undefined))
+        ]
+    }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
         lineNumber: 47,
         columnNumber: 9
@@ -28405,9 +28417,9 @@ const LoginView = ({ onLoggedIn })=>{
         };
         fetch("https://openlibrary.org/account/login.json", {
             method: "POST",
-            body: JSON.stringify(data) // convert the data to a JSON string
+            body: JSON.stringify(data) // same convert the data to a JSON string
         }).then((response)=>{
-            if (response.ok) onLoggedIn(username);
+            if (response.ok) onLoggedIn(username); // will then pass user and token back to MainView so they can be used in subsequent requests
             else alert("login failed");
         });
     };
@@ -28420,7 +28432,8 @@ const LoginView = ({ onLoggedIn })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         type: "text",
                         value: username,
-                        onChange: (e)=>setUsername(e.target.value)
+                        onChange: (e)=>setUsername(e.target.value),
+                        required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
                         lineNumber: 31,
@@ -28438,7 +28451,8 @@ const LoginView = ({ onLoggedIn })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         type: "password",
                         value: password,
-                        onChange: (e)=>setPassword(e.target.value)
+                        onChange: (e)=>setPassword(e.target.value),
+                        required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
                         lineNumber: 32,
