@@ -34,7 +34,7 @@ export const MainView = () => {              // create a functional component ca
     }
 
     if (books.length === 0) {                       // if the length of the books array is 0, return a message
-        return <div>The list is empty!</div>;       // returns a message that says "The list is empty!"
+        return <div><h2>The list is empty -- Attempting to load API ...</h2></div>;       // returns a message that says "The list is empty!"
     }
 
     return (                         // returns a new piece of UI
